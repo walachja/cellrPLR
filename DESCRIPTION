@@ -1,11 +1,11 @@
-Package: cellrPLRBeta
+Package: cellrPLR
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
+Title: Cellwise Outlier Diagnostics Using Robust Pairwise Log-Ratios (cell-rPLR)
+Version: 1.0.1
 Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Maintainer: Jan Walach <walach.jan@gmail.com>
+Description: An algorithm called cell-rPLR for the identification of outliers in single cells of a data matrix is proposed. The algorithm is designed for metabolomic data, where due to the size effect the measured values are not directly comparable. Pairwise log-ratios between the variable values form the elemental information for the algorithm, and the aggregation of appropriate weights results in outlyingness information. A further feature of cell-rPLR is that it is useful for biomarker identification, particularly in presence of cellwise outliers.                       Package is based on paper: 'Cellwise outlier detection and biomarker identification in metabolomics based on pairwise log-ratios', Walach J., Filzmoser P., Kouril S., Submitted
+License: GNU General Public License v3.0
 Encoding: UTF-8
 LazyData: true
+Imports: ggplot2, plotly, reshape2, MASS
