@@ -314,6 +314,7 @@ library(MASS)
 # Weights are computed from tau, than data are normalized by weighted mean and computed by Huber,Hampel,Biweight,...
 .HampelWNew <- function(x,g, c1 = 4.5, c2 = 3)
 {
+  library(MASS)
   n <- length(x)
   medx <- median(x[g])
   x. <- abs(x - medx)
@@ -335,6 +336,7 @@ library(MASS)
 
 .HuberWNew <- function(x,g, c1 = 4.5, c2 = 3)
 {
+  library(MASS)
   n <- length(x)
   medx <- median(x[g])
   x. <- abs(x - medx)
@@ -357,6 +359,7 @@ library(MASS)
 
 .BisquareWNew <- function(x,g, c1 = 4.5, c2 = 3)
 {
+  library(MASS)
   n <- length(x)
   medx <- median(x[g])
   x. <- abs(x - medx)
