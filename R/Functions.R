@@ -117,14 +117,14 @@ plot_cellheatmap <- function(data, type = 'biweight', g1, g2, mainGroup='max', p
   
   # Aggregation
   vv5 <- t(.aggregation(vvv1))
-  rownames(vv5) <- rownames(data)
-  colnames(vv5) <- colnames(data)
+  rownames(vv5) <- colnames(data)
+  colnames(vv5) <- rownames(data)
   
   v <- reshape2::melt(vv5)
-  v$Var1 <- as.factor(zzz$Var1)
-  v$Var1 <- factor(zzz$Var1,levels = levels(zzz$Var1))
-  v$Var2 <- as.factor(zzz$Var2)
-  v$Var2 <- factor(zzz$Var2,levels = levels(zzz$Var2))
+  v$Var1 <- as.factor(v$Var1)
+  v$Var1 <- factor(v$Var1,levels = levels(v$Var1))
+  v$Var2 <- as.factor(v$Var2)
+  v$Var2 <- factor(v$Var2,levels = levels(v$Var2))
   
   
   grid <- ifelse(grid==TRUE,'gray','white')
@@ -143,10 +143,46 @@ plot_cellheatmap <- function(data, type = 'biweight', g1, g2, mainGroup='max', p
 }
 
 
+plot.cellrPLR_biom <- function(x, plotly=FALSE, grid=FALSE, title=NULL)
+{
+  library(reshape2)
+  library(ggplot2)
+  library(plotly)
+  
+  vv5 <- x$Cell_outliers
+  
+  # Aggregation
+  vv5 <- t(vv5)
+  rownames(vv5) <- colnames(data)
+  colnames(vv5) <- rownames(data)
+  
+  v <- reshape2::melt(vv5)
+  v$Var1 <- as.factor(v$Var1)
+  v$Var1 <- factor(v$Var1,levels = levels(v$Var1))
+  v$Var2 <- as.factor(v$Var2)
+  v$Var2 <- factor(v$Var2,levels = levels(v$Var2))
+  
+  
+  grid <- ifelse(grid==TRUE,'gray','white')
+  p1 <- ggplot(v, aes(Var1, Var2)) + 
+    geom_tile(aes(fill = value),color=grid) +
+    scale_fill_gradient2(low = "blue",mid='white',high = "red",midpoint = 0,limits=c(-1,1)) +
+    theme_grey(base_size = 15)  + scale_y_discrete(expand = c(0, 0))+
+    scale_x_discrete(expand = c(0, 0))+
+    theme(panel.border = element_rect(colour = "black", fill=NA, size=0.3), axis.text.x = element_text(angle = 90, hjust = 1))+
+    xlab('Variables') + ylab('Samples') + ggtitle(title)
+  if(plotly == FALSE){
+    p1
+  } else print(ggplotly(p1))
+  
+  #return(t(vv5))
+}
+
+
 
 cellrPLR_biom <- function(data, type = 'biweight', g1, g2, mainGroup='max', biomarker, permutation=FALSE, B=1000, p.alpha=0.95)
 {
-  if (!is.data.frame(data) & !is.matrix(x)) {
+  if (!is.data.frame(data) & !is.matrix(data)) {
     stop("Wrong x data format. Use data.frame or matrix")
   }
   if (min(data)<=0) {
@@ -212,7 +248,7 @@ cellrPLR_biom <- function(data, type = 'biweight', g1, g2, mainGroup='max', biom
       output$Permutation_tests <- perm
     }
   
-  
+  output$Cell_outliers <- vv5
   output$name  <- "cell_rPLR"
   class(output) <- "cellrPLR_biom"
   
