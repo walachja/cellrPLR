@@ -54,8 +54,8 @@ List of \code{Difference}, \code{Biomarker_results} and \code{Permutation_tests}
 \item{Difference}{Difference value is returned. The bigger the value, more important variable is for discrimination. In range <0;2>.}
 \item{Biomarker_results}{Data frame with: \code{Ordered_position}, \code{Biomarker_names} and \code{Variable_position}.}
 \item{Ordered_position}{Variable importance ordered position.}
-\item{Biomarker_names}{If 'true' biomarkers were given as agrument \code{biomarker}, their name is returned.}
-\item{Variable_position}{If 'true' biomarkers were given as agrument \code{biomarker}, their ordered position is returned.}
+\item{Biomarker_names}{If 'true' biomarkers were given as agrument \code{biomarker}, their names are returned.}
+\item{Variable_position}{If 'true' biomarkers were given as agrument \code{biomarker}, their ordered positions are returned.}
 \item{Permutation_tests}{Data frame with: \code{p_value} ,\code{TRUE_FALSE},\code{biomarkers},\code{biomarkers_names}.}
 \item{p_value}{If \code{permutation = TRUE} p_value for each variable is returned.}
 \item{TRUE_FALSE}{If \code{permutation = TRUE} infromation if variable is (TRUE) or is not (FALSE) identified as biomarker.}

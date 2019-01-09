@@ -193,6 +193,8 @@ cellrPLR_biom <- function(data, type = 'biweight', g1, g2, mainGroup='max', biom
   s1 <-  .sorting(vv5, g1, g2, colnames(data))
   
   output <- list(Difference=s1)
+  output$Ordered_list <- rank(-output$Difference)
+  
   
   # Ranking
   if (!missing(biomarker))
@@ -201,7 +203,7 @@ cellrPLR_biom <- function(data, type = 'biweight', g1, g2, mainGroup='max', biom
       output$Biomarker_results <- data.frame(Ordered_position=res,
                                              Biomarker_names=biomarker,
                                              Variable_position=which(colnames(data) %in% biomarker))
-    }
+   }
 
     # Permutation tests
   if (permutation == TRUE)
