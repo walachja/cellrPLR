@@ -77,7 +77,7 @@ plot_cellheatmap <- function(data, type = 'biweight', g1, g2, mainGroup='max', p
   library(ggplot2)
   library(plotly)
   
-  if (!is.data.frame(data) & !is.matrix(x)) {
+  if (!is.data.frame(data) & !is.matrix(data)) {
     stop("Wrong x data format. Use data.frame or matrix")
   }
   if (min(data)<=0) {
@@ -136,7 +136,7 @@ plot_cellheatmap <- function(data, type = 'biweight', g1, g2, mainGroup='max', p
     theme(panel.border = element_rect(colour = "black", fill=NA, size=0.3), axis.text.x = element_text(angle = 90, hjust = 1))+
     xlab('Variables') + ylab('Samples') + ggtitle(title)
   if(plotly == FALSE){
-    p1
+    print(p1)
   } else print(ggplotly(p1))
   
   return(t(vv5))
